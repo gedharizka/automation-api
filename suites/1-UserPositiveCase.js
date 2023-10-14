@@ -7,16 +7,18 @@ const {
   DeleteUser,
   UpdateUser,
 } = require("../service/user");
-const { dataCreateuser, dataUpdate } = require("../data/user");
+const { dataUpdate, generateRandomUserData } = require("../data/user");
 
 describe("CRUD User Positive Case", () => {
   let accessToken;
   let userId;
+  let randomUserData;
 
   before(async () => {
     try {
       const loginRes = await login();
       accessToken = loginRes.body.data.accessToken;
+      randomUserData = generateRandomUserData();
     } catch (error) {
       console.error("Error:", error);
     }
@@ -24,10 +26,10 @@ describe("CRUD User Positive Case", () => {
 
   it("Create user success with status 201", async () => {
     try {
-      const res = await CreateUser(dataCreateuser, accessToken);
+      const res = await CreateUser(randomUserData, accessToken);
       userId = res._body.data.userId;
       expect(res.status).to.equal(201);
-      expect(res._body.data.name).to.equal(dataCreateuser.name);
+      expect(res._body.data.name).to.equal(randomUserData.name);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -55,10 +57,11 @@ describe("CRUD User Positive Case", () => {
 
   it("Update data user by userId", async () => {
     try {
-      const res = await UpdateUser(dataUpdate, userId, accessToken);
+      const updateDataRandom = generateRandomUserData()
+      const res = await UpdateUser(updateDataRandom, userId, accessToken);
       expect(res.status).to.equal(200);
       expect(res._body.message).to.equal("User berhasil diupdate");
-      expect(res._body.data.name).to.equal(dataUpdate.name);
+      expect(res._body.data.name).to.equal(updateDataRandom.name);
     } catch (error) {
       console.error("Error:", error);
     }

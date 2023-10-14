@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "testing":"mocha --recursive .\\suites",
-    "report":"mocha .\\suites --reporter mochawesome"
+    "testing": "mocha --recursive .\\suites",
+    "report": "mocha .\\suites --reporter mochawesome"
   },
   "keywords": [],
   "author": "Gedha Rizka",
@@ -17,5 +17,8 @@
     "mocha": "^10.2.0",
     "mochawesome": "^7.1.3",
     "supertest": "^6.3.3"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.1.0"
   }
 }
