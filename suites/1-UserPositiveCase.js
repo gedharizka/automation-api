@@ -7,7 +7,7 @@ const {
   DeleteUser,
   UpdateUser,
 } = require("../service/user");
-const { dataUpdate, generateRandomUserData } = require("../data/user");
+const { generateRandomUserData } = require("../data/user");
 
 describe("CRUD User Positive Case", () => {
   let accessToken;
